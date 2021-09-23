@@ -14,14 +14,24 @@ class ArticlesTableSeeder extends Seeder
     public function run(Faker $faker)
     {
         $authorNameList=[
-            'Vittorio Feltri',
-            'Marco Travaglio',
-            'Francesco Abate',
-            'Carmelo Abbate',
-            'Lirio Abbate',
-            'Anja Niedringhaus',
-            'Dorothy Thompson',
-            'Lilli Gruber',
+            'Vittorio',
+            'Marco',
+            'Francesco',
+            'Carmelo',
+            'Lirio',
+            'Anja',
+            'Dorothy',
+            'Lilli',
+        ];
+        $authorSurnameList=[
+            'Feltri',
+            'Travaglio',
+            'Abate',
+            'Abbate',
+            'Abbate',
+            'Niedringhaus',
+            'Thompson',
+            'Gruber',
         ];
         $listOfAuthorID=[];
         
@@ -31,6 +41,9 @@ class ArticlesTableSeeder extends Seeder
             $randNameKey = array_rand($authorNameList, 1);
             $name = $authorNameList[$randNameKey];
             $author->name =$name;
+            $randSurnameKey = array_rand($authorSurnameList, 1);
+            $surname = $authorSurnameList[$randSurnameKey];
+            $author->surname =$surname;
             $author->email= $faker->email();
             $author->save();
             $listOfAuthorID[]=$author->id;
