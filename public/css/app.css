@@ -10942,3 +10942,8 @@ a.text-dark:focus {
   }
 }
 
+.card {
+  margin-bottom: 12px;
+  padding: 12px;
+}
+

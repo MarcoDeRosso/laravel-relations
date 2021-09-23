@@ -2,22 +2,19 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
+<div class="d-flex justify-content-center">
+  {!! $allArticles->links() !!}
+</div>
+    <div class="row ">
+    @foreach($allArticles as $atricle)
+            <div class="card col-md-3" style="width: 18rem;">
+                <img class="card-img-top" src="{{ $atricle->picture }}" alt="Card image cap">
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
+                    <h5 class="card-title">{{ $atricle->title }}</h5>
+                    <p class="card-text">{{ $atricle->text }}</p>
                 </div>
             </div>
-        </div>
+        @endforeach
     </div>
 </div>
 @endsection
