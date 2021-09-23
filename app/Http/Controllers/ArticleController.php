@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Article;
+use App\Author;
 
 class ArticleController extends Controller
 {
@@ -25,7 +26,8 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        $authors = Author::all();
+        return view('articles.create', compact('authors'));
     }
 
     /**
@@ -36,7 +38,11 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validateFunction($request);
+        $data = $request->all();
+        $article = new Article();
+        $this->fillAndSave($article, $data);
+        return redirect()->route('articles.show', $article->id);
     }
 
     /**
@@ -47,7 +53,8 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        //
+        $article = article::find($id);
+        return view('articles.show', compact('article'));
     }
 
     /**
@@ -82,5 +89,21 @@ class ArticleController extends Controller
     public function destroy($id)
     {
         //
+    }
+    
+    private function fillAndSave (Article $article, $data){
+        $article->title=$data['title'];
+        $article->text=$data['text'];
+        $article->picture=$data['picture'];
+        $article->author_id=$data['author_id'];
+        $article->save();
+    }
+    private function validateFunction($request){
+        $request->validate([
+            'title'=>'required|max:255',
+            'text'=>'required|max:65500',
+            'picture'=>'url|required|max:65500',
+            'author_id'=>'required'
+        ]);
     }
 }
