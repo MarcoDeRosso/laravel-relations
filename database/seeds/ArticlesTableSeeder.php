@@ -1,6 +1,7 @@
 <?php
 use App\Article;
 use App\Author;
+use App\Tag;
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 
@@ -33,6 +34,16 @@ class ArticlesTableSeeder extends Seeder
             'Thompson',
             'Gruber',
         ];
+        $tagList=[
+            'Sport',
+            'Cronaca',
+            'Mondo',
+            'Economia',
+            'Ambiente',
+            'Covid',
+            'Politica'
+        ];
+
         $listOfAuthorID=[];
         
         for($i=0; $i<8;$i++){
@@ -49,6 +60,14 @@ class ArticlesTableSeeder extends Seeder
             $listOfAuthorID[]=$author->id;
             
         }
+
+        $listOfTags=[];
+        foreach($tagList as $tag){
+            $tagObject = new Tag();
+            $tagObject->tag=$tag;
+            $tagObject->save();
+            $listOfTags[]=$tagObject->id;
+        }
         
         for($i=0; $i<50; $i++){
             $article= new Article();
@@ -59,7 +78,16 @@ class ArticlesTableSeeder extends Seeder
             $randAuthorKey= array_rand($listOfAuthorID, 1);
             $authorID = $listOfAuthorID[$randAuthorKey];
             $article->author_id= $authorID;
+
+            $randTagKey = array_rand($listOfTags, 2);
+            $tag1= $listOfTags[$randTagKey[0]];
+            $tag2= $listOfTags[$randTagKey[1]];
+
             $article->save();
+
+            $article->tag()->attach($tag1);
+            $article->tag()->attach($tag2);
+
         }
       
     }
