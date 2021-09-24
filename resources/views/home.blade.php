@@ -12,6 +12,9 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $article->title }}</h5>
                     <p class="card-text">{{ $article->text }}</p>
+                    @foreach($article->tag as $tag)
+                        <div class="tag">{{$tag->tag}}</div> 
+                    @endforeach
                     @if(Auth::check())
                         <a href="{{route('articles.show',['article'=>$article->id])}}"><button type="button" class="btn btn-primary">Leggi</button></a>
                     @endif

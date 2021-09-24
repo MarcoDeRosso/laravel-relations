@@ -10947,3 +10947,13 @@ a.text-dark:focus {
   padding: 12px;
 }
 
+.tag {
+  background-color: rgba(104, 154, 204, 0.5);
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 6px;
+  border-radius: 10px;
+  margin: 6px 0;
+}
+

@@ -7,8 +7,8 @@
     <h2>{{$article->author->name}} {{$article->author->surname}}</h2>
     <p>{{$article->text}}</p>
     @foreach($article->tag as $tag)
-                {{$tag->tag}} 
-        @endforeach
+        <div class="tag">{{$tag->tag}}</div> 
+    @endforeach
         <img src="{{$article->picture}}" alt="A picture of article {{$article->title}}">
     </div>
     

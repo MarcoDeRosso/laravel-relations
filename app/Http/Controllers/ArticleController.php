@@ -44,6 +44,7 @@ class ArticleController extends Controller
         $data = $request->all();
         $article = new Article();
         $this->fillAndSave($article, $data);
+
         return redirect()->route('articles.show', $article->id);
     }
 
