@@ -99,14 +99,14 @@ class ArticleController extends Controller
         $article->picture=$data['picture'];
         $article->author_id=$data['author_id'];
         $article->save();
-        
-        if(array_key_exists('tags', $data)) {
 
+        if(array_key_exists('tags', $data)) {
+            
             foreach($data['tags'] as $tagId) {
-                $article->author()->attach($tagId);
+                $article->tag()->attach($tagId);
             }
 
-        }
+         }
     }
     private function validateFunction($request){
         $request->validate([

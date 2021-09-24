@@ -37,7 +37,7 @@
         @foreach($tags as $tag)
             <div>
                 <label>{{$tag->tag}}</label>
-                <input name="$tags[]" type="checkbox" value="{{ $tag->id }}">
+                <input name="tags[]" type="checkbox" value="{{ $tag->id }}">
             </div>
         @endforeach
         <input class="btn btn-primary" type="submit" value="Invia">
