@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Article;
 use App\Author;
+use App\Tag;
 
 class ArticleController extends Controller
 {
@@ -27,7 +28,8 @@ class ArticleController extends Controller
     public function create()
     {
         $authors = Author::all();
-        return view('articles.create', compact('authors'));
+        $tags= Tag::all();
+        return view('articles.create', compact('authors', 'tags'));
     }
 
     /**
@@ -97,6 +99,14 @@ class ArticleController extends Controller
         $article->picture=$data['picture'];
         $article->author_id=$data['author_id'];
         $article->save();
+        
+        if(array_key_exists('tags', $data)) {
+
+            foreach($data['tags'] as $tagId) {
+                $article->author()->attach($tagId);
+            }
+
+        }
     }
     private function validateFunction($request){
         $request->validate([

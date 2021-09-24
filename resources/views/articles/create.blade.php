@@ -12,7 +12,7 @@
             </ul>
         </div>
     @endif
-    <form action="{{route('articles.store')}}" method="post">
+    <form class="d-flex flex-column" action="{{route('articles.store')}}" method="post">
         @csrf
         <label for="title">Titolo :</label>
         <input type="text" name="title" id="title">
@@ -33,6 +33,13 @@
                 </select>
             </div>
         </div>
+        <h3>Tags:</h3>
+        @foreach($tags as $tag)
+            <div>
+                <label>{{$tag->tag}}</label>
+                <input name="$tags[]" type="checkbox" value="{{ $tag->id }}">
+            </div>
+        @endforeach
         <input class="btn btn-primary" type="submit" value="Invia">
     </form>
     
