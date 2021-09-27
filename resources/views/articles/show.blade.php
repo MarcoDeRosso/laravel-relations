@@ -20,12 +20,14 @@
     @endforeach
         <img src="{{$article->picture}}" alt="A picture of article {{$article->title}}">
         <h2>Commenti</h2>
+        @foreach($article->comment as $comment)
         <h4>
-          
+            Autore : {{$comment->user_name}}
         </h4>
         <p>
-            
+            Commento: {{$comment->comment_text}}
         </p>
+        @endforeach
         <h2>
             Aggiungi un tuo commento!
         </h2>

@@ -35,6 +35,7 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validateFunction($request);
         $comment = new Comment();
         $data=$request->all();
         $comment->comment_text =$data['comment_text'];
@@ -90,5 +91,11 @@ class CommentController extends Controller
     public function destroy($id)
     {
         //
+    }
+    private function validateFunction($request){
+        $request->validate([
+            'user_name'=>'required|max:100',
+            'comment_text'=>'required|max:65500',
+        ]);
     }
 }
