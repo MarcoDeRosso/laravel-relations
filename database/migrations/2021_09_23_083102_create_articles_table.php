@@ -20,6 +20,8 @@ class CreateArticlesTable extends Migration
             $table->text('picture');
             $table->unsignedBigInteger('author_id');
             $table->foreign('author_id')->references('id')->on('authors');
+            $table->unsignedBigInteger('comment_id');
+            $table->foreign('comment_id')->references('id')->on('comments');
             $table->timestamps();
         });
     }
