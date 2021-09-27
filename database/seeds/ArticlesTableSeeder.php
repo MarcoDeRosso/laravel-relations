@@ -71,34 +71,34 @@ class ArticlesTableSeeder extends Seeder
         }
         
         for($i=0; $i<50; $i++){
-            $comment = new Comment();
-            $comment->comment_text = $faker->text(100);
-            $comment->user_name = $faker->words(2, true);
-            $comment->save();
-
-
-
+            
+            
+            
             $article= new Article();
             $article->title=$faker->words(4, true);
             $article->text=$faker->paragraphs(3, true);
             $article->picture=$faker->imageUrl(640, 480, 'animals', true);
-
-            $article->comment_id=$comment->id;
-
+            
+            
             $randAuthorKey= array_rand($listOfAuthorID, 1);
             $authorID = $listOfAuthorID[$randAuthorKey];
             $article->author_id= $authorID;
-
+            
             $randTagKey = array_rand($listOfTags, 2);
             $tag1= $listOfTags[$randTagKey[0]];
             $tag2= $listOfTags[$randTagKey[1]];
-
+            
             $article->save();
-
+            
+            $comment = new Comment();
+            $comment->comment_text = $faker->text(100);
+            $comment->user_name = $faker->words(2, true);
+            $comment->article_id=$article->id;
+            $comment->save();
             $article->tag()->attach($tag1);
             $article->tag()->attach($tag2);
-
+            
         }
-      
+        
     }
 }

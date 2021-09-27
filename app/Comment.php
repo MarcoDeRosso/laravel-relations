@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     public function article(){
-        return $this->hasOne(Article::class);
+        return $this->belongsTo(Article::class);
     }
 }

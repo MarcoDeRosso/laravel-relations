@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <a href="{{route('articles.index')}}"><button type="button"  class="btn btn-secondary"><- Torna indietro</button></a>  
-        @if ($errors->any())
+    @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
                 @foreach ($errors->all() as $error)
